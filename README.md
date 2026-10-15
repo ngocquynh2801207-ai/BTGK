@@ -24,7 +24,6 @@ Giao diện hiện tại là phần giao diện phía người dùng. Các chứ
 6. Link Figma
 https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=JNymZSV3E2csWoId-0
 7. Link video giới thiệu/demo
-Chưa có đường dẫn video được cung cấp. Hãy thay dòng dưới đây bằng đường dẫn video demo của nhóm:
-DAN_LINK_VIDEO_VAO_DAY
+
 8. Link GitHub
-Chưa có đường dẫn repository GitHub được cung cấp. Hãy thay dòng dưới đây bằng đường dẫn repository của dự án:
+  (https://github.com/ngocquynh2801207-ai/BTGK.git)
