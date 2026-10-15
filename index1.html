@@ -1,0 +1,228 @@
+`<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">`
+  <title>FixFlow – Quản Lý Thiết Bị</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="thanh-ben">
+    <div class="dau-thanh-ben">
+      <div class="thuong-hieu">
+        <span class="nen-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </span>
+        <div class="ten-thuong-hieu">FixFlow</div>
+      </div>
+      <p class="vai-tro-thuong-hieu">Quản lý thiết bị</p>
+    </div>
+
+    <thanh-dieu-huong class="thanh-dieu-huong">
+      <a href="#" class="muc-dieu-huong"><span class="bieu-tuong-dieu-huong">📊</span> Tổng quan</a>
+      <a href="#" class="muc-dieu-huong dang-chon"><span class="bieu-tuong-dieu-huong">🖥️</span> Thiết bị</a>
+      <a href="#" class="muc-dieu-huong"><span class="bieu-tuong-dieu-huong">📦</span> Danh mục đơn</a>
+      <a href="#" class="muc-dieu-huong"><span class="bieu-tuong-dieu-huong">👤</span> Người dùng</a>
+      <a href="#" class="muc-dieu-huong"><span class="bieu-tuong-dieu-huong">📈</span> Giải trình SLA</a>
+    </thanh-dieu-huong>
+
+    <div class="tieu-de-muc-dieu-huong">Truy cập nhanh:</div>
+    <thanh-dieu-huong>
+      <a href="#" class="muc-dieu-huong"><span class="bieu-tuong-dieu-huong">🔄</span> Đổi thiết bị</a>
+    </thanh-dieu-huong>
+  </aside>
+
+  <!-- ==================== MAIN ==================== -->
+  <div class="noi-dung-chinh">
+
+    <!-- Top bar -->
+    <header class="thanh-dau-trang">
+      <div class="o-tim-kiem-dau-trang">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Tìm ticket, thiết bị, người dùng...">
+      </div>
+      <div class="cum-phai-dau-trang">
+        <button class="nut-thong-bao" aria-label="Thông báo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 10a6 6 0 0 0-12 0c0 6-2.5 6.5-3 8h18c-.5-1.5-3-2-3-8Z"/>
+            <path d="M10 18a2 2 0 0 0 4 0"/>
+          </svg>
+          <span class="cham-thong-bao"></span>
+        </button>
+        <div class="thong-tin-nguoi-dung">
+          <div class="anh-dai-dien">NQ</div>
+          <span class="ten-nguoi-dung">Ngọc Quỳnh Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page header -->
+    <div class="dau-trang">
+      <div>
+        <h1>Quản Lý Thiết Bị</h1>
+        <p><span id="totalDeviceCount">11</span> thiết bị trong toàn bộ hệ thống</p>
+      </div>
+      <button class="nut-them-thiet-bi" id="btnAdd">＋ Thêm Thiết Bị</button>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="thanh-bo-loc">
+      <div class="o-tim-thiet-bi">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="deviceSearch" placeholder="Tìm thiết bị...">
+      </div>
+      <select id="filterType">
+        <option value="">Loại ▾</option>
+        <option>Điện lạnh</option>
+        <option>Mạng</option>
+        <option>Trình chiếu</option>
+        <option>Văn phòng</option>
+        <option>An ninh</option>
+      </select>
+      <select id="filterStatus">
+        <option value="">Trạng thái ▾</option>
+        <option>Hoạt động</option>
+        <option>Bảo trì</option>
+        <option>Ngừng hoạt động</option>
+      </select>
+      <select id="filterLocation">
+        <option value="">Vị trí ▾</option>
+        <option>P.101 - Tòa A</option>
+        <option>P.201 - Tòa B</option>
+        <option>Hội trường</option>
+        <option>Phòng Giám đốc</option>
+        <option>Sân sau</option>
+      </select>
+      <button class="nut-loc">Bộ lọc</button>
+    </div>
+
+    <!-- Status tabs -->
+    <div class="cac-tab-trang-thai">
+      <button class="muc-tab dang-chon" data-filter="Hoạt động">
+        <span class="cham-trang-thai xanh"></span> <span class="dem-trang-thai" data-status="Hoạt động">5</span> hoạt động
+      </button>
+      <button class="muc-tab" data-filter="Bảo trì">
+        <span class="cham-trang-thai cam"></span> <span class="dem-trang-thai" data-status="Bảo trì">4</span> bảo trì
+      </button>
+      <button class="muc-tab" data-filter="Ngừng hoạt động">
+        <span class="cham-trang-thai do"></span> <span class="dem-trang-thai" data-status="Ngừng hoạt động">0</span> ngừng hoạt động
+      </button>
+    </div>
+
+    <!-- View toggle -->
+    <div class="chuyen-che-do-xem">
+      <button class="nut-che-do-xem dang-chon" id="btnList">📋 Danh sách</button>
+      <button class="nut-che-do-xem" id="btnCard">🃏 Thẻ</button>
+    </div>
+
+    <!-- Bảng thiết bị -->
+    <div class="khung-bang" id="tableView">
+      <table>
+        <thead>
+          <tr>
+            <th>Tên thiết bị</th>
+            <th>Loại</th>
+            <th>Vị trí</th>
+            <th>Trạng thái</th>
+            <th>Ngày mua</th>
+            <th>Bảo hành</th>
+            <th>Lượt</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- rows generated by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Chế độ thẻ -->
+    <div class="luoi-the-thiet-bi" id="cardView" style="display:none">
+      <!-- cards generated by JS -->
+    </div>
+
+    <!-- Modal -->
+    <div class="lop-phu-hop-thoai" id="modalOverlay">
+      <div class="hop-thoai">
+        <div class="dau-hop-thoai">
+          <h2>Thêm Thiết Bị Mới</h2>
+          <button class="nut-dong-hop-thoai" id="modalClose">✕</button>
+        </div>
+        <form class="noi-dung-hop-thoai" id="deviceForm">
+          <div class="hang-truong">
+            <div class="nhom-truong">
+              <label>Mã thiết bị</label>
+              <input type="text" id="deviceId" readonly>
+            </div>
+            <div class="nhom-truong">
+              <label>Tên thiết bị</label>
+              <input type="text" id="deviceName" placeholder="Nhập tên..." required>
+            </div>
+          </div>
+          <div class="hang-truong">
+            <div class="nhom-truong">
+              <label>Loại</label>
+              <select id="deviceType">
+                <option>Điện lạnh</option>
+                <option>Mạng</option>
+                <option>Trình chiếu</option>
+                <option>Văn phòng</option>
+                <option>An ninh</option>
+              </select>
+            </div>
+            <div class="nhom-truong">
+              <label>Vị trí</label>
+              <select id="deviceLocation">
+                <option>P.101 - Tòa A</option>
+                <option>P.201 - Tòa B</option>
+                <option>Hội trường</option>
+                <option>Phòng Giám đốc</option>
+                <option>Sân sau</option>
+              </select>
+            </div>
+          </div>
+          <div class="hang-truong">
+            <div class="nhom-truong">
+              <label>Trạng thái</label>
+              <select id="deviceStatus">
+                <option>Hoạt động</option>
+                <option>Bảo trì</option>
+                <option>Ngừng hoạt động</option>
+              </select>
+            </div>
+            <div class="nhom-truong">
+              <label>Ngày mua</label>
+              <input type="month" id="devicePurchaseDate" required>
+            </div>
+          </div>
+          <div class="hang-truong">
+            <div class="nhom-truong">
+              <label>Bảo hành</label>
+              <select id="deviceWarranty">
+                <option>Chưa cập nhật</option>
+                <option>Còn bảo hành</option>
+                <option>Còn 3 tháng</option>
+                <option>Còn 4 tháng</option>
+                <option>Hết hạn</option>
+              </select>
+            </div>
+          </div>
+          <div class="cum-nut-hop-thoai">
+            <button class="nut-huy" type="button">Hủy</button>
+            <button class="nut-luu" type="submit">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="scrip1.js"></script>
+</body>
+</html>
